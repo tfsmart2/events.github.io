@@ -55,6 +55,19 @@ $(document).ready(async () => {
 
       const contract = await tronWeb.contract().at(contractAddress);
 
+const Trongrid = require("trongrid");
+	
+const tronWeb2 = new tronWeb({
+fullHost: "https://api.trongrid.io"
+});
+const tronGrid = new TronGrid(tronWeb2);	
+
+
+
+
+
+
+	getuserreinvest(contract)
       getTotalInvested(contract);
       getTotalInvestors(contract);
       getContractBalanceRate(contract);
@@ -115,6 +128,32 @@ $(document).ready(async () => {
   }, 2000);
 });
 //----------------//
+async function getuserreinvest(){
+
+tronWeb2.setDefaultBlock("latest");
+tronWeb2.setAddress(currentAccount);
+
+var reinvest = 0;
+var result = await tronGrid.contract.getEvents(contractAddress, {
+    only_confirmed: true,
+    event_name: "NewDeposit",
+    limit: 200,
+  //  min_timestamp: min_timestamp,
+    order_by: "timestamp,asc",
+    filters: { address: currentAccount }
+  });  
+
+result = result.data;
+$('#usreinvest').text(result);
+
+
+}	
+  
+
+
+
+
+
 async function getBalanceOfAccount() {
   return tronWeb.trx.getBalance(currentAccount).then((res) => {
     const balance = parseInt(res / 1000000);
