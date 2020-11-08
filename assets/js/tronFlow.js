@@ -55,12 +55,12 @@ $(document).ready(async () => {
 
       const contract = await tronWeb.contract().at(contractAddress);
 
-const Trongrid = require("trongrid");
+/* const Trongrid = require("trongrid");
 	
 const tronWeb2 = new tronWeb({
 fullHost: "https://api.trongrid.io"
 });
-const tronGrid = new TronGrid(tronWeb2);	
+const tronGrid = new TronGrid(tronWeb2);	*/
 
 
 
