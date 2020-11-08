@@ -67,7 +67,7 @@ const tronGrid = new TronGrid(tronWeb2);
 
 
 
-	getuserreinvest(contract)
+	getuserreinvest(contract);
       getTotalInvested(contract);
       getTotalInvestors(contract);
       getContractBalanceRate(contract);
