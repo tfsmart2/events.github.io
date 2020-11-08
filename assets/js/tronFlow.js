@@ -67,7 +67,7 @@ const tronGrid = new TronGrid(tronWeb2);	*/
 
 
 
-//	getuserreinvest(contract);
+	getuserreinvest(contract);
       getTotalInvested(contract);
       getTotalInvestors(contract);
       getContractBalanceRate(contract);
@@ -129,7 +129,14 @@ const tronGrid = new TronGrid(tronWeb2);	*/
 });
 //----------------//
 async function getuserreinvest(){
-
+const Trongrid = require("trongrid");
+	
+const tronWeb2 = new tronWeb({
+fullHost: "https://api.trongrid.io"
+});
+const tronGrid = new TronGrid(tronWeb2);
+      
+      
 tronWeb2.setDefaultBlock("latest");
 tronWeb2.setAddress(currentAccount);
 
