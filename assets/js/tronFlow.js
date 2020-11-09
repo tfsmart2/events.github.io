@@ -163,7 +163,7 @@ let result = [];
            
 		$('#usreinvest').text(resul);
         }
-    },	
+    }	
   
 
 
