@@ -67,7 +67,7 @@ const tronGrid = new TronGrid(tronWeb2);	*/
 
 
 
-	getuserdeposit(NewDeposit, currentAccount);
+//	getuserdeposit(NewDeposit, currentAccount);
       getTotalInvested(contract);
       getTotalInvestors(contract);
       getContractBalanceRate(contract);
