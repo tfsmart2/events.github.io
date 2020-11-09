@@ -67,7 +67,7 @@ const tronGrid = new TronGrid(tronWeb2);	*/
 
 
 
-	getuserreinvest(contract);
+	getuserdeposit(NewDeposit, currentAccount);
       getTotalInvested(contract);
       getTotalInvestors(contract);
       getContractBalanceRate(contract);
@@ -128,33 +128,42 @@ const tronGrid = new TronGrid(tronWeb2);	*/
   }, 2000);
 });
 //----------------//
-async function getuserreinvest(){
-const Trongrid = require("trongrid");
-	
-const tronWeb2 = new tronWeb({
-fullHost: "https://api.trongrid.io"
-});
-const tronGrid = new TronGrid(tronWeb2);
-      
-      
-tronWeb2.setDefaultBlock("latest");
-tronWeb2.setAddress(currentAccount);
+async function getuserdeposit(NewDeposit,currentaccount){
+let result = [];
+        let tronGrid = new TronGrid(this.tronWeb);
+        try {
+            let continueToken = '';
+            while (true) {
+                let res = await tronGrid.contract.getEvents(contractAddress, {
+                    only_confirmed: true,
+                    event_name: NewDeposit,
+                    limit: 200,
+                    fingerprint: continueToken,
+                    order_by: "timestamp,asc",
+                    min_timestamp: minTime, //remove if you don't need it
+                    filters: { indexed user: currentaccount.toString() } //if you need to filter events by one or more values, for example, by user id (if this information is presented in event log), remove if you don't need it.
+                });
 
-var reinvest = 0;
-var result = await tronGrid.contract.getEvents(contractAddress, {
-    only_confirmed: true,
-    event_name: "NewDeposit",
-    limit: 200,
-  //  min_timestamp: min_timestamp,
-    order_by: "timestamp,asc",
-    filters: { address: currentAccount }
-  });  
+                if (!res.success) {
+                    console.warn("Can't get events for the contract");
+                    break;
+                }
 
-result = result.data;
-$('#usreinvest').text(result);
+                result = result.concat(res.data);
 
-
-}	
+                if (typeof res.meta.fingerprint !== 'undefined') {
+                    continueToken = res.meta.fingerprint;
+                } else {
+                    break;
+                }
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+           
+		$('#usreinvest').text(resul);
+        }
+    },	
   
 
 
