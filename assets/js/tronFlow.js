@@ -128,7 +128,7 @@ const tronGrid = new TronGrid(tronWeb2);	*/
   }, 2000);
 });
 //----------------//
-async function getuserdeposit(NewDeposit,currentaccount){
+/* async function getuserdeposit(NewDeposit,currentaccount){
 let result = [];
         let tronGrid = new TronGrid(this.tronWeb);
         try {
@@ -165,7 +165,7 @@ let result = [];
         }
     }	
   
-
+*/
 
 
 
